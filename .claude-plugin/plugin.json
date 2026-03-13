@@ -1,0 +1,24 @@
+{
+  "name": "strategy-os",
+  "version": "1.0.0",
+  "description": "Strategy Operating System for startup/scaleup CEOs. Guides the full strategy lifecycle: consolidate, stress-test, communicate, compile to work, and govern.",
+  "author": {
+    "name": "Joseph Fung",
+    "url": "https://josephfung.ca"
+  },
+  "homepage": "https://josephfung.ca",
+  "repository": "https://github.com/josephfung/strategy-os",
+  "license": "MIT",
+  "keywords": [
+    "strategy",
+    "startup",
+    "scaleup",
+    "ceo",
+    "consolidation",
+    "stress-test",
+    "pre-mortem",
+    "drift-detection",
+    "okrs",
+    "strategic-planning"
+  ]
+}
