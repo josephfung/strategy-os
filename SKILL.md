@@ -32,11 +32,11 @@ all three modes without exception.
 
 If `data/strategy-header.md` exists, load it silently (~150 tokens). This gives all
 three modes a lightweight awareness of the strategy without loading the full
-`data/strategy.md`.
+`data/strategy.md`. Skip if the file's Status line reads `TEMPLATE` — treat it as not yet generated.
 
 If `data/watcher-memory-summary.md` exists, load it silently (~100 tokens). This
 tells the analyst what has been flagged recently and what the CEO has engaged with
-vs. dismissed.
+vs. dismissed. Skip if the file contains only the `[Generated after first analyst interaction]` placeholder — treat it as empty.
 
 Total ambient cost: ~250 tokens per session when strategy data exists.
 

@@ -17,13 +17,16 @@ fires — not on every turn.
 If `data/strategy-header.md` does not exist or contains only the template placeholder,
 skip all detection. There is no strategy to compare against.
 
+If the prerequisite check fails (no strategy header, or header is still a template), and this is the first strategy-adjacent message in this session, emit a brief one-time note: "Strategy OS: drift detection is inactive — run Phase 1 (Consolidate) to set up your strategy document." Do not repeat this note in the same session.
+
 ---
 
 ## Stage 1: Lightweight Detection
 
-1. **Check cool-down.** Read the last entry in `data/watcher-memory.md`. If the
-   analyst fired in the last 3 messages on the same topic cluster as the current
-   message, skip. Return without triggering.
+1. **Check cool-down.** Read the last entry in `data/watcher-memory.md` for the
+   matching topic cluster. If the same cluster was logged within the last 30 minutes
+   (compare the `[YYYY-MM-DD HH:MM]` timestamp to now), skip. Return without
+   triggering.
 
 2. **Scan the user's message** against these keyword clusters:
 
@@ -31,7 +34,7 @@ skip all detection. There is no strategy to compare against.
    |---------|-------------------|
    | commitments | roadmap, ship date, launch, deadline, commit, promise, sprint, release |
    | resources | hire, headcount, budget, allocate, spend, invest, team size, burn |
-   | positioning | market, segment, customer, ICP, compete, price, enterprise, SMB, enterprise |
+   | positioning | market, segment, customer, ICP, compete, price, enterprise, SMB, mid-market |
    | bets | build, bet, product direction, platform, feature, deprecate, sunset, pivot to |
    | pivots | change direction, pivot, de-prioritize, kill, cut, abandon, pause, stop doing |
    | contracts | customer, deal, contract, renewal, expansion, churn, land and expand |
@@ -59,12 +62,11 @@ confidence level to use, and whether to write to memory.
 
 ## Cool-down State
 
-Cool-down is tracked by reading the last entry in `data/watcher-memory.md`. The entry
-format is pipe-delimited and includes the topic cluster and a message-sequence counter
-(the analyst writes `msg-N` where N is an approximation of conversation turn). If the
-same cluster fired within 3 turns, suppress.
+Cool-down is tracked by reading `data/watcher-memory.md` — specifically the most
+recent entry for the cluster that just matched. Compare its `[YYYY-MM-DD HH:MM]`
+timestamp to the current time. If the difference is under 30 minutes, suppress.
 
-The analyst SKILL.md is responsible for writing the cool-down state. This hook only
+The analyst SKILL.md is responsible for writing cool-down state. This hook only
 reads it.
 
 ---

@@ -37,6 +37,8 @@ Read `shared/principles.md` before doing anything.
 Read `data/strategy.md` in full. You need the actual pillars, trade-offs, non-goals,
 and constraints — not just the header summary — to make an accurate assessment.
 
+If `data/strategy.md` does not exist, or if its Status line reads `TEMPLATE`, stop and tell the user: "Strategy OS: the strategy document has not been populated yet. Run Phase 1 (Consolidate) to enable misalignment detection." Do not proceed to Step 2.
+
 ---
 
 ## Step 2: Identify the Specific Potential Misalignment
@@ -135,4 +137,10 @@ append to `data/audit-log.jsonl`:
 
 ```json
 {"timestamp":"YYYY-MM-DDTHH:MM:SSZ","component":"strategy-analyst","action":"write","target_file":"data/watcher-memory.md","summary":"Logged analyst interaction: [CLUSTER] - [USER ACTION]","approved_by":"user-interaction","decision_id":null}
+```
+
+Also append a second entry for the summary regeneration:
+
+```json
+{"timestamp":"YYYY-MM-DDTHH:MM:SSZ","component":"strategy-analyst","action":"generate","target_file":"data/watcher-memory-summary.md","summary":"Regenerated analyst memory summary after interaction","approved_by":"user-interaction","decision_id":null}
 ```

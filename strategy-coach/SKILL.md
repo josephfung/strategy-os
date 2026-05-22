@@ -30,8 +30,7 @@ Read `shared/principles.md` before doing anything.
 Check if `data/kpi-registry.md` exists and has at least one KPI defined (look for
 a `## [KPI Name]` section beyond the template placeholder).
 
-If not — or if the last-updated date is more than 90 days ago — run the setup
-interview before anything else.
+If not, run the setup interview before anything else. If the registry exists but the last-updated date is more than 90 days ago, first ask: "Your KPI registry hasn't been updated in 90 days. Want to run a quick refresh? (Takes ~10 minutes, or we can continue and do it later.)" Only run the re-interview if the CEO confirms.
 
 ### Setup Interview Script
 
@@ -75,7 +74,7 @@ Get confirmation, then write the file. Log the write to `data/audit-log.jsonl`.
 `data/kpi-registry.md` is older than the user's chosen cadence.
 
 **Claude.ai / Desktop:** At session start, read `data/kpi-registry.md` and check
-`Last check-in`. If past due, run check-in before proceeding with the session.
+`Last check-in`. If past due, open with: "Before we get to that — it's been [N days] since your last check-in. Quick update on [TOP 2 KPIs by signal weight]?" Then run the check-in. Don't silently redirect the session.
 
 ---
 

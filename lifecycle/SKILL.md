@@ -89,6 +89,12 @@ and the quality checklist.
    a 1-2 sentence summary of the strategy and write it to `data/strategy-header.md`.
    See `data/strategy-header.md` for the format.
 
+   Append to `data/audit-log.jsonl` for each write:
+   ```json
+   {"timestamp":"YYYY-MM-DDTHH:MM:SSZ","component":"strategy-lifecycle","action":"write","target_file":"data/strategy.md","summary":"Phase 1 consolidation: saved approved strategy memo","approved_by":"ceo-approval","decision_id":null}
+   ```
+   And a second entry for `data/strategy-header.md` with `"action":"generate"` and an appropriate summary.
+
 ### File naming convention
 
 If helping organize artifacts, use: `YYYY-MM_CATEGORY_Subject_OWNER_STATUS.ext`
