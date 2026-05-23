@@ -41,7 +41,6 @@ Before loading ambient context, check whether the Strategy OS data directory exi
    b. Check if the plugin's template files are available under
       `~/.claude/plugins/cache/josephfung/strategy-os/` (any version subfolder; if
       multiple versions exist, use the one with the highest version number).
-      <!-- TODO: verify this cache path against actual Claude plugin behavior before shipping -->
       If found, copy any files from its `data/` subdirectory to
       `~/.claude/strategy-os/data/` — but only if the destination file does not
       already exist (never overwrite live data). If the copy fails for any reason,
