@@ -17,6 +17,7 @@ jobs:
       - name: Build .plugin archive
         run: |
           zip -r strategy-os.plugin . \
+            -x './.git' \
             -x './.git/*' \
             -x './.github/*' \
             -x './.claude/*' \

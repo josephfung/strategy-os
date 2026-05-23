@@ -9,8 +9,6 @@
   "homepage": "https://josephfung.ca",
   "repository": "https://github.com/josephfung/strategy-os",
   "license": "MIT",
-  "agents": "./agents/",
-  "hooks": "./hooks/hooks.json",
   "keywords": [
     "strategy",
     "startup",
