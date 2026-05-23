@@ -20,6 +20,9 @@ LAST_CHECKIN=$(grep -E "^Last check-in:" "$KPI_REGISTRY" 2>/dev/null | head -1 |
 # Skip placeholder values like [YYYY-MM-DD]
 echo "$LAST_CHECKIN" | grep -q '\[' && exit 0
 
+# Sanitize to digits and hyphens only — prevents python3 string literal breakage
+LAST_CHECKIN=$(echo "$LAST_CHECKIN" | tr -cd '0-9-')
+
 # Parse Check-in cadence
 CADENCE=$(grep -E "^Check-in cadence:" "$KPI_REGISTRY" 2>/dev/null | head -1 | sed 's/Check-in cadence:[[:space:]]*//' | tr -d '[:space:]')
 
