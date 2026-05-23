@@ -13,6 +13,9 @@ execute their own strategic choices.
 Read `shared/principles.md` before doing any work in this skill. The six principles
 there are non-negotiable and apply to every phase.
 
+When reading or writing files in this skill, expand `~` to the user's home directory
+(e.g. `/Users/username` on macOS, `/home/username` on Linux).
+
 ---
 
 ## Detecting Where the User Is
@@ -50,7 +53,7 @@ or are we building one from scratch?"
 ## Phase 1: Consolidate
 
 **Goal**: Turn scattered artifacts into a single Strategy Consolidation Memo, saved
-to `data/strategy.md`.
+to `~/.claude/strategy-os/data/strategy.md`.
 
 Read `lifecycle/references/memo-template.md` before starting this phase. It contains
 the full memo template, the intake interview questions, the extraction table format,
@@ -85,15 +88,15 @@ and the quality checklist.
    trace to an extraction table row or CEO answer. Use [OWNER] placeholders. Run the
    quality check (8 criteria) before presenting.
 
-7. **Save**: Write the approved memo to `data/strategy.md`. After saving, generate
-   a 1-2 sentence summary of the strategy and write it to `data/strategy-header.md`.
-   See `data/strategy-header.md` for the format.
+7. **Save**: Write the approved memo to `~/.claude/strategy-os/data/strategy.md`. After saving, generate
+   a 1-2 sentence summary of the strategy and write it to `~/.claude/strategy-os/data/strategy-header.md`.
+   See `~/.claude/strategy-os/data/strategy-header.md` for the format.
 
-   Append to `data/audit-log.jsonl` for each write:
+   Append to `~/.claude/strategy-os/data/audit-log.jsonl` for each write:
    ```json
-   {"timestamp":"YYYY-MM-DDTHH:MM:SSZ","component":"strategy-lifecycle","action":"write","target_file":"data/strategy.md","summary":"Phase 1 consolidation: saved approved strategy memo","approved_by":"ceo-approval","decision_id":null}
+   {"timestamp":"YYYY-MM-DDTHH:MM:SSZ","component":"strategy-lifecycle","action":"write","target_file":"~/.claude/strategy-os/data/strategy.md","summary":"Phase 1 consolidation: saved approved strategy memo","approved_by":"ceo-approval","decision_id":null}
    ```
-   And a second entry for `data/strategy-header.md` with `"action":"generate"` and an appropriate summary.
+   And a second entry for `~/.claude/strategy-os/data/strategy-header.md` with `"action":"generate"` and an appropriate summary.
 
 ### File naming convention
 
@@ -113,7 +116,7 @@ sources.
 
 ## Phase 2: Stress-Test
 
-**Goal**: Pressure-test `data/strategy.md` before committing to it.
+**Goal**: Pressure-test `~/.claude/strategy-os/data/strategy.md` before committing to it.
 
 Read `lifecycle/references/stress-test-prompts.md` before starting this phase. It
 contains four structured stress tests and their follow-up integration prompts.
@@ -124,7 +127,7 @@ Run these in any order. Recommend running at least 2 before approving the memo.
 
 1. **Pre-Mortem**: Generate 10 failure modes across 6 categories (Market, Product,
    GTM, People, Finance, Ops). Select top 3 with warning signals and mitigations.
-   Then integrate findings back into `data/strategy.md`'s risk section.
+   Then integrate findings back into `~/.claude/strategy-os/data/strategy.md`'s risk section.
 
 2. **Bull/Bear Case**: Write the strongest argument for and against the strategy.
    Surface load-bearing assumptions (proven vs. unproven). Design lightweight 2-4
@@ -143,10 +146,10 @@ Run these in any order. Recommend running at least 2 before approving the memo.
 ### Integration rule
 
 Every stress test should end with a follow-up that feeds findings back into the memo.
-Stress tests that produce interesting insights but don't update `data/strategy.md`
+Stress tests that produce interesting insights but don't update `~/.claude/strategy-os/data/strategy.md`
 are wasted work. After each test, propose specific edits (new risk rows, revised
 trade-off language, new open questions, contingency posture). Log any approved changes
-to `data/audit-log.jsonl`.
+to `~/.claude/strategy-os/data/audit-log.jsonl`.
 
 ---
 
@@ -160,7 +163,7 @@ the stakeholder reframing matrix and all 5 communication prompts.
 
 ### Key rule: locked strategy objects
 
-Before generating any comms, extract and lock these objects from `data/strategy.md`:
+Before generating any comms, extract and lock these objects from `~/.claude/strategy-os/data/strategy.md`:
 - Strategic Objective (1-2 sentences)
 - Strategic Pillars (name + 1 sentence each)
 - Key Trade-offs (all, in forced-choice format)
@@ -189,7 +192,7 @@ and examples change per audience.
 
 ## Phase 4: Compile to Work
 
-**Goal**: Translate `data/strategy.md` into a structured, importable work graph.
+**Goal**: Translate `~/.claude/strategy-os/data/strategy.md` into a structured, importable work graph.
 
 Read `lifecycle/references/compilation-spec.md` before starting this phase. It
 contains the compilation mapping, ticket schema, tag system, and drift definition.
@@ -225,7 +228,7 @@ single owner.
    Definition of done, Owner, Dependencies, Risks, Memo section, Tags
 3. Flag pillars with 0 or >3 bets
 4. List "UNKNOWN" work the memo implies but doesn't name
-5. Only use content from `data/strategy.md` — do not invent initiatives
+5. Only use content from `~/.claude/strategy-os/data/strategy.md` — do not invent initiatives
 
 ### Compilation rules
 
@@ -256,7 +259,7 @@ drift detection, cadence prompts (weekly/monthly/quarterly), and agent guardrail
 
 ### Drift detection
 
-Run weekly. Compare completed work against `data/strategy.md`. Work is flagged as
+Run weekly. Compare completed work against `~/.claude/strategy-os/data/strategy.md`. Work is flagged as
 DRIFT when:
 - It doesn't map to any pillar
 - It maps to a pillar but contradicts a stated trade-off
@@ -267,7 +270,7 @@ If drift exceeds 20% of active work, the strategy or the work system needs a res
 
 ### Cadence prompts
 
-Three templates, each requiring `data/strategy.md` + a changelog/task list + metrics:
+Three templates, each requiring `~/.claude/strategy-os/data/strategy.md` + a changelog/task list + metrics:
 
 1. **Weekly exec update**: Highlights, lowlights, decisions needed, risks, next week
 2. **Monthly pillar review**: Per-pillar status, bets progress, reallocation proposals
@@ -280,7 +283,7 @@ When operating with write access to tools:
 - **Start at Level 0 (read-only)**. Progress through: Level 1 (draft-only),
   Level 2 (write with approval), Level 3 (autonomous, limited)
 - Never skip levels
-- Log every write action to `data/audit-log.jsonl`: Date, Time, Action, Tool,
+- Log every write action to `~/.claude/strategy-os/data/audit-log.jsonl`: Date, Time, Action, Tool,
   Object, Summary, Approved by, Decision ID
 - Review the audit log weekly as part of drift detection
 - At the start of any agentic session, confirm operating mode (draft-only or
@@ -303,7 +306,7 @@ Unless the user requests a specific format:
 - Use the Explicit/Inferred/Unknown labels in a dedicated column or inline
 - Keep prose sections concise — the CEO's time is the scarcest resource
 - Use [OWNER], [DATE], [PLACEHOLDER] markers for information the CEO needs to fill in
-- When producing files, save to `data/` unless the user specifies otherwise
+- When producing files, save to `~/.claude/strategy-os/data/` unless the user specifies otherwise
 
 ---
 
