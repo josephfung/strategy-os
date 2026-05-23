@@ -121,7 +121,7 @@ npx skills add josephfung/strategy-os
 
 ### Cowork
 
-Install from the `.plugin` file directly in a Cowork session.
+Download [strategy-os.plugin](https://github.com/josephfung/strategy-os/releases/latest/download/strategy-os.plugin) from the latest release, then upload it in Cowork via **Customize → Browse plugins → Upload**.
 
 ## MCP connections (optional)
 

@@ -1,0 +1,44 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build .plugin archive
+        run: |
+          zip -r strategy-os.plugin . \
+            -x './.git/*' \
+            -x './.github/*' \
+            -x './.claude/*' \
+            -x './screenshots/*' \
+            -x './CLAUDE.md' \
+            -x './.gitignore' \
+            -x './data/audit-log.jsonl'
+
+      - name: Verify archive integrity
+        run: |
+          unzip -t strategy-os.plugin
+          SIZE=$(stat -c%s strategy-os.plugin 2>/dev/null || stat -f%z strategy-os.plugin)
+          echo "Archive size: ${SIZE} bytes"
+          if [ "$SIZE" -lt 10000 ]; then
+            echo "ERROR: Archive is suspiciously small (${SIZE} bytes). Build may be broken."
+            exit 1
+          fi
+
+      - name: Create release and upload asset
+        # pinned to v2.2.1
+        uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65
+        with:
+          files: strategy-os.plugin
+          generate_release_notes: true
+          fail_on_unmatched_files: true
