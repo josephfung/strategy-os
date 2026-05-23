@@ -1,3 +1,8 @@
+---
+Status: TEMPLATE
+Last updated: [YYYY-MM-DD]
+---
+
 # KPI Registry
 
 <!-- Populated by strategy-coach/SKILL.md during the setup interview. -->
