@@ -10,7 +10,7 @@ description: >
   Triggers on: strategy, consolidate, stress-test, drift, pre-mortem, pillars,
   trade-offs, OKRs, roadmap, "are we on track", KPI, check-in, "how are we doing",
   uploads of strategy artifacts, or resource/headcount/budget allocation language.
-  Maintains ambient awareness when data/strategy.md exists.
+  Maintains ambient awareness when ~/.claude/strategy-os/data/strategy.md exists.
 ---
 
 <!--
@@ -26,15 +26,39 @@ three operating modes. Route to the right one based on what the user needs.
 Read `shared/principles.md` before doing any work. The six principles there apply to
 all three modes without exception.
 
+When reading or writing files in this skill, expand `~` to the user's home directory
+(e.g. `/Users/username` on macOS, `/home/username` on Linux).
+
+---
+
+## First-Run Check (silent)
+
+Before loading ambient context, check whether the Strategy OS data directory exists:
+
+1. Check if `~/.claude/strategy-os/data/` exists.
+2. If not:
+   a. Create it: run `mkdir -p ~/.claude/strategy-os/data`
+   b. Check if the plugin's template files are available under
+      `~/.claude/plugins/cache/josephfung/strategy-os/` (any version subfolder).
+      If found, copy any files from its `data/` subdirectory to
+      `~/.claude/strategy-os/data/` — but only if the destination file does not
+      already exist (never overwrite live data).
+   c. If the plugin path is not resolvable, skip the copy — the normal first-run
+      flows (Phase 1, coach setup interview) will create the files organically.
+3. If the directory cannot be created due to a permissions error, emit once:
+   > "Strategy OS: could not create ~/.claude/strategy-os/data/. Check directory
+   > permissions. Data will not be saved this session."
+   Then continue without writing any files this session.
+
 ---
 
 ## Ambient Context (load at session start)
 
-If `data/strategy-header.md` exists, load it silently (~150 tokens). This gives all
+If `~/.claude/strategy-os/data/strategy-header.md` exists, load it silently (~150 tokens). This gives all
 three modes a lightweight awareness of the strategy without loading the full
-`data/strategy.md`. Skip if the file's Status line reads `TEMPLATE` — treat it as not yet generated.
+`~/.claude/strategy-os/data/strategy.md`. Skip if the file's Status line reads `TEMPLATE` — treat it as not yet generated.
 
-If `data/watcher-memory-summary.md` exists, load it silently (~100 tokens). This
+If `~/.claude/strategy-os/data/watcher-memory-summary.md` exists, load it silently (~100 tokens). This
 tells the analyst what has been flagged recently and what the CEO has engaged with
 vs. dismissed. Skip if the file contains only the `[Generated after first analyst interaction]` placeholder — treat it as empty.
 
@@ -69,7 +93,7 @@ The analyst investigates and surfaces a lightweight, advisory note.
 
 **Signs (Claude.ai / Desktop):** The conversation touches roadmap commitments,
 resource allocation (hiring, headcount, budget), product bets, market positioning,
-customer contracts, or pivots — AND `data/strategy-header.md` exists. Check for
+customer contracts, or pivots — AND `~/.claude/strategy-os/data/strategy-header.md` exists. Check for
 alignment before responding.
 
 **Do not route here** for: day-to-day operational decisions (stand-up agendas, 1:1s),
@@ -87,7 +111,7 @@ execution trends.
 
 **Signs:** User mentions KPIs, metrics, "how are we doing," "are we on track," "what's
 the trend," or asks open questions about execution health. Also triggers when
-`data/kpi-registry.md` doesn't exist yet (first-run setup), or when the coach's
+`~/.claude/strategy-os/data/kpi-registry.md` doesn't exist yet (first-run setup), or when the coach's
 scheduled cadence has elapsed.
 
 ---
@@ -99,4 +123,4 @@ Unless the user requests a specific format:
 - Use E/I/U labels in a dedicated column or inline
 - Keep prose sections concise — the CEO's time is the scarcest resource
 - Use [OWNER], [DATE], [PLACEHOLDER] for information the CEO needs to fill in
-- When producing files, save to `data/` unless the user specifies otherwise
+- When producing files, save to `~/.claude/strategy-os/data/` unless the user specifies otherwise
