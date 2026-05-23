@@ -31,7 +31,7 @@ When reading or writing files in this skill, expand `~` to the user's home direc
 
 ---
 
-## First-Run Check (silent)
+## First-Run Check (silent on success)
 
 Before loading ambient context, check whether the Strategy OS data directory exists:
 
@@ -40,6 +40,7 @@ Before loading ambient context, check whether the Strategy OS data directory exi
    a. Create it: run `mkdir -p ~/.claude/strategy-os/data`
    b. Check if the plugin's template files are available under
       `~/.claude/plugins/cache/josephfung/strategy-os/` (any version subfolder).
+      <!-- TODO: verify this cache path against actual Claude plugin behavior before shipping -->
       If found, copy any files from its `data/` subdirectory to
       `~/.claude/strategy-os/data/` — but only if the destination file does not
       already exist (never overwrite live data).
