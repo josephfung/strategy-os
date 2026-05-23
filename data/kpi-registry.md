@@ -5,7 +5,7 @@ Last updated: [YYYY-MM-DD]
 
 # KPI Registry
 
-<!-- Populated by strategy-coach/SKILL.md during the setup interview. -->
+<!-- Populated by agents/strategy-coach.md during the setup interview. -->
 
 Last updated: [YYYY-MM-DD]
 Last check-in: [YYYY-MM-DD]

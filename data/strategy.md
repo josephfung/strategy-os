@@ -7,7 +7,7 @@ Version: 0.1-draft
 
 # Strategy Consolidation Memo
 
-<!-- This file is a template. Run Phase 1 (Consolidate) via lifecycle/SKILL.md to populate it. -->
+<!-- This file is a template. Run Phase 1 (Consolidate) via /strategy consolidate to populate it. -->
 
 ## Strategic Objective
 
