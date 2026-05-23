@@ -117,6 +117,8 @@ down/up from [PRIOR VALUE]. Recording that. Anything else on this?"
 
 ### After each check-in
 
+Before executing any of the steps below, confirm the complete set of updated values with the user: "Here's what I'm recording — [list all updated KPIs and values]. Confirm?" Only write after receiving confirmation.
+
 1. **Update the KPI history** in `~/.claude/strategy-os/data/kpi-registry.md`: append a new row to each
    probed KPI's history table.
 
@@ -136,7 +138,7 @@ down/up from [PRIOR VALUE]. Recording that. Anything else on this?"
 5. **Log to `~/.claude/strategy-os/data/audit-log.jsonl`** (expand `~` to the absolute home directory path in the `target_file` field):
 
 ```json
-{"timestamp":"YYYY-MM-DDTHH:MM:SSZ","component":"strategy-coach","action":"write","target_file":"/home/username/.claude/strategy-os/data/kpi-registry.md","summary":"Check-in: updated [KPI1] to [VALUE1], [KPI2] to [VALUE2]","approved_by":"user-interaction","decision_id":null}
+{"timestamp":"YYYY-MM-DDTHH:MM:SSZ","component":"strategy-coach","action":"write","target_file":"$HOME/.claude/strategy-os/data/kpi-registry.md","summary":"Check-in: updated [KPI1] to [VALUE1], [KPI2] to [VALUE2]","approved_by":"user-interaction","decision_id":null}
 ```
 
 ---
