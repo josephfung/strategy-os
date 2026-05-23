@@ -5,7 +5,7 @@ description: >
   work and the CEO's stated strategy. Advisory tone, never directive. Activate when:
   the UserPromptSubmit hook fires (Claude Code), or when the conversation touches
   roadmap commitments, resource allocation (hiring/budget/headcount), product bets,
-  market positioning, customer contracts, or pivots — and data/strategy.md exists.
+  market positioning, customer contracts, or pivots — and ~/.claude/strategy-os/data/strategy.md exists.
   Do not activate for day-to-day operations, questions, or brainstorming.
 ---
 
@@ -22,22 +22,25 @@ surface a lightweight, non-intrusive note. You are advisory, never directive.
 
 Read `shared/principles.md` before doing anything.
 
+When reading or writing files in this skill, expand `~` to the user's home directory
+(e.g. `/Users/username` on macOS, `/home/username` on Linux).
+
 ---
 
 ## You Have Been Invoked With
 
 - The user's message (or the topic cluster that matched, from the hook)
-- `data/strategy-header.md` contents
-- `data/watcher-memory-summary.md` contents
+- `~/.claude/strategy-os/data/strategy-header.md` contents
+- `~/.claude/strategy-os/data/watcher-memory-summary.md` contents
 
 ---
 
 ## Step 1: Load the Full Strategy
 
-Read `data/strategy.md` in full. You need the actual pillars, trade-offs, non-goals,
+Read `~/.claude/strategy-os/data/strategy.md` in full. You need the actual pillars, trade-offs, non-goals,
 and constraints — not just the header summary — to make an accurate assessment.
 
-If `data/strategy.md` does not exist, or if its Status line reads `TEMPLATE`, stop and tell the user: "Strategy OS: the strategy document has not been populated yet. Run Phase 1 (Consolidate) to enable misalignment detection." Do not proceed to Step 2.
+If `~/.claude/strategy-os/data/strategy.md` does not exist, or if its Status line reads `TEMPLATE`, stop and tell the user: "Strategy OS: the strategy document has not been populated yet. Run Phase 1 (Consolidate) to enable misalignment detection." Do not proceed to Step 2.
 
 ---
 
@@ -45,7 +48,7 @@ If `data/strategy.md` does not exist, or if its Status line reads `TEMPLATE`, st
 
 Answer these questions:
 1. What is the user doing / saying / planning to do?
-2. What specific element of `data/strategy.md` does it potentially conflict with?
+2. What specific element of `~/.claude/strategy-os/data/strategy.md` does it potentially conflict with?
    (Name the pillar, trade-off, non-goal, or constraint.)
 3. Is this a genuine conflict, or just overlapping language that doesn't actually
    contradict the strategy?
@@ -70,7 +73,7 @@ Answer these questions:
 
 ## Step 3: Check Prior Dismissals
 
-Read `data/watcher-memory-summary.md`. If the CEO dismissed a flag on this same
+Read `~/.claude/strategy-os/data/watcher-memory-summary.md`. If the CEO dismissed a flag on this same
 topic recently, stay quiet unless the current signal is materially different
 (different pillar, different trade-off, higher stakes).
 
@@ -119,28 +122,28 @@ writes. No writing on the same turn you surface the flag — wait for the respon
 
 ### Log format
 
-Append to `data/watcher-memory.md`:
+Append to `~/.claude/strategy-os/data/watcher-memory.md`:
 
 ```
 [YYYY-MM-DD HH:MM] | analyst | surfaced | [cluster] | [user action] | [outcome/reason]
 ```
 
-Then regenerate `data/watcher-memory-summary.md`:
+Then regenerate `~/.claude/strategy-os/data/watcher-memory-summary.md`:
 - List the 3 most recently flagged/dismissed topics (cluster + date + outcome)
 - Note any active sensitivity calibrations ("suppress: resources cluster")
 - Add/update the one-line engagement pattern
 
 ### Audit log
 
-After any write to `data/watcher-memory.md` or `data/watcher-memory-summary.md`,
-append to `data/audit-log.jsonl`:
+After any write to `~/.claude/strategy-os/data/watcher-memory.md` or `~/.claude/strategy-os/data/watcher-memory-summary.md`,
+append to `~/.claude/strategy-os/data/audit-log.jsonl`:
 
 ```json
-{"timestamp":"YYYY-MM-DDTHH:MM:SSZ","component":"strategy-analyst","action":"write","target_file":"data/watcher-memory.md","summary":"Logged analyst interaction: [CLUSTER] - [USER ACTION]","approved_by":"user-interaction","decision_id":null}
+{"timestamp":"YYYY-MM-DDTHH:MM:SSZ","component":"strategy-analyst","action":"write","target_file":"~/.claude/strategy-os/data/watcher-memory.md","summary":"Logged analyst interaction: [CLUSTER] - [USER ACTION]","approved_by":"user-interaction","decision_id":null}
 ```
 
 Also append a second entry for the summary regeneration:
 
 ```json
-{"timestamp":"YYYY-MM-DDTHH:MM:SSZ","component":"strategy-analyst","action":"generate","target_file":"data/watcher-memory-summary.md","summary":"Regenerated analyst memory summary after interaction","approved_by":"user-interaction","decision_id":null}
+{"timestamp":"YYYY-MM-DDTHH:MM:SSZ","component":"strategy-analyst","action":"generate","target_file":"~/.claude/strategy-os/data/watcher-memory-summary.md","summary":"Regenerated analyst memory summary after interaction","approved_by":"user-interaction","decision_id":null}
 ```

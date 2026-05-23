@@ -14,7 +14,7 @@ fires — not on every turn.
 
 ## Prerequisites
 
-If `data/strategy-header.md` does not exist or contains only the template placeholder,
+If `~/.claude/strategy-os/data/strategy-header.md` does not exist or contains only the template placeholder,
 skip all detection. There is no strategy to compare against.
 
 If the prerequisite check fails (no strategy header, or header is still a template), and this is the first strategy-adjacent message in this session, emit a brief one-time note: "Strategy OS: drift detection is inactive — run Phase 1 (Consolidate) to set up your strategy document." Do not repeat this note in the same session.
@@ -23,7 +23,7 @@ If the prerequisite check fails (no strategy header, or header is still a templa
 
 ## Stage 1: Lightweight Detection
 
-1. **Check cool-down.** Read the last entry in `data/watcher-memory.md` for the
+1. **Check cool-down.** Read the last entry in `~/.claude/strategy-os/data/watcher-memory.md` for the
    matching topic cluster. If the same cluster was logged within the last 30 minutes
    (compare the `[YYYY-MM-DD HH:MM]` timestamp to now), skip. Return without
    triggering.
@@ -52,8 +52,8 @@ Load `strategy-analyst/SKILL.md`.
 Pass to the skill:
 - The user's full message text
 - The cluster that matched
-- The full contents of `data/strategy-header.md`
-- The full contents of `data/watcher-memory-summary.md`
+- The full contents of `~/.claude/strategy-os/data/strategy-header.md`
+- The full contents of `~/.claude/strategy-os/data/watcher-memory-summary.md`
 
 The analyst SKILL.md makes all decisions about whether to surface a flag, what
 confidence level to use, and whether to write to memory.
@@ -62,7 +62,7 @@ confidence level to use, and whether to write to memory.
 
 ## Cool-down State
 
-Cool-down is tracked by reading `data/watcher-memory.md` — specifically the most
+Cool-down is tracked by reading `~/.claude/strategy-os/data/watcher-memory.md` — specifically the most
 recent entry for the cluster that just matched. Compare its `[YYYY-MM-DD HH:MM]`
 timestamp to the current time. If the difference is under 30 minutes, suppress.
 
