@@ -1,127 +1,68 @@
-<!--
-  Strategy OS — Copyright (c) 2026 Joseph Fung (https://josephfung.ca)
-  This file is the canonical strategy document for this organization.
-  It is written and maintained by the Strategy OS lifecycle skill (Phase 1: Consolidate).
-  Do not edit manually without updating the version history in the Appendix.
--->
+---
+Status: TEMPLATE
+Last updated: [YYYY-MM-DD]
+Approved by: [CEO NAME]
+Version: 0.1-draft
+---
 
 # Strategy Consolidation Memo
 
-> **Status:** TEMPLATE — not yet populated.
-> Run Phase 1 (Consolidate) in the Strategy OS lifecycle skill to build this document
-> from your existing strategy artifacts.
-
-**Date:** [YYYY-MM-DD]
-**Owner:** [CEO NAME]
-**Scope:** [Company-wide / Business unit / Product line]
-**Time horizon:** [e.g., 12 months with 3-year directional view]
-**Status:** DRAFT | REVIEW | CANON
-
----
-
-## Executive Summary
-
-[10 lines or fewer. A reader should understand the strategic direction, key bets, and
-primary trade-offs from this section alone.]
-
----
+<!-- This file is a template. Run Phase 1 (Consolidate) via lifecycle/SKILL.md to populate it. -->
 
 ## Strategic Objective
 
-[One to two sentences. What are we trying to accomplish, and by when?]
+[PLACEHOLDER: One clear sentence stating what you're trying to achieve and by when.]
 
-**Time horizon:** [e.g., "Become the default platform for [SEGMENT] within 18 months"]
-
----
+**Time horizon:** [PLACEHOLDER: e.g., 18 months, FY2026]
 
 ## Where We Play
 
-- **Target customer:** [WHO]
-- **Market / segment:** [WHAT]
-- **Geography:** [WHERE, if relevant]
-- **Use case or problem:** [WHY THEY BUY]
-
----
+[PLACEHOLDER: Markets, segments, and customer types you're focused on.]
 
 ## How We Win
 
-[What is our advantage? Why will we win against alternatives?]
+[PLACEHOLDER: The 2-3 specific advantages or approaches that give you an edge in those markets.]
 
----
+## Strategic Pillars
 
-## Strategic Pillars and Initiatives
+### Pillar 1: [PLACEHOLDER: Name]
 
-#### Pillar 1: [PILLAR NAME]
+[PLACEHOLDER: 2-3 sentence description of this pillar and what it means for execution.]
 
-**Why this pillar matters:** [1-2 sentences]
+### Pillar 2: [PLACEHOLDER: Name]
 
-| Initiative | Owner | Horizon | Hypothesis | Definition of done |
-|-----------|-------|---------|------------|-------------------|
-| [INITIATIVE] | [NAME] | [Q/YEAR] | [What we believe] | [How we know it worked] |
+[PLACEHOLDER: 2-3 sentence description.]
 
-**Key metric:** [The outcome metric for this pillar]
-**Dependencies:** [What must be true for this pillar to succeed]
+### Pillar 3: [PLACEHOLDER: Name]
 
-#### Pillar 2: [PILLAR NAME]
+[PLACEHOLDER: 2-3 sentence description.]
 
-[Repeat structure]
+## Key Trade-offs
 
-#### Pillar 3: [PILLAR NAME]
+| We choose to... | ...instead of... | Because... |
+|-----------------|------------------|------------|
+| [PLACEHOLDER] | [PLACEHOLDER] | [PLACEHOLDER] |
 
-[Repeat structure]
+## Non-Goals
 
----
-
-## Implied Trade-offs and Non-goals
-
-| We choose | Over | Because | We accept the risk of |
-|-----------|------|---------|----------------------|
-| [X] | [Y] | [REASON] | [RISK] |
-
-**Non-goals:**
-- [NON-GOAL 1]
-- [NON-GOAL 2]
-
----
+- [PLACEHOLDER: What you are explicitly not doing in this period]
 
 ## Key Risks and Assumptions
 
-| Assumption | Status | Evidence | What breaks if wrong |
-|-----------|--------|----------|---------------------|
-| [ASSUMPTION] | Proven / Unproven / Mixed | [EVIDENCE] | [CONSEQUENCE] |
+| Risk / Assumption | Type | Probability | Impact | Mitigation |
+|-------------------|------|-------------|--------|------------|
+| [PLACEHOLDER] | Risk/Assumption | H/M/L | H/M/L | [PLACEHOLDER] |
 
-**Top 3 risks:**
-1. [RISK]: Likelihood [H/M/L], Impact [H/M/L]. Mitigation: [ACTION].
-2. [RISK]: Likelihood [H/M/L], Impact [H/M/L]. Mitigation: [ACTION].
-3. [RISK]: Likelihood [H/M/L], Impact [H/M/L]. Mitigation: [ACTION].
+## Resource Constraints
 
----
+[PLACEHOLDER: Headcount, budget, runway, or other binding constraints.]
 
-## Operating System
+## Open Questions
 
-- **Decision cadence:** [e.g., Weekly SLT, monthly pillar review, quarterly planning]
-- **Decision rights:** [Who can change pillar priorities?]
-- **Review rhythm:** [How often do we check the memo against reality?]
-- **Key metrics reviewed:** [Which 3-5 metrics do we track?]
-- **Drift detection:** [How do we catch off-strategy work?]
+- [PLACEHOLDER: Unresolved decisions that need to be made]
 
----
+## Decision Log
 
-## Open Questions / Required Decisions
-
-| Question | Decision owner | Deadline | Missing information |
-|----------|---------------|----------|-------------------|
-| [QUESTION] | [WHO] | [WHEN] | [WHAT IS NEEDED] |
-
----
-
-## Appendix: Source Inventory and Version History
-
-| Source file | Category | Date | Status | Notes |
-|------------|----------|------|--------|-------|
-| [FILENAME] | [CATEGORY] | [DATE] | CANON / ARCHIVE | [Conflicts or caveats] |
-
-**Version history:**
-| Date | Change | Approved by |
-|------|--------|-------------|
-| [YYYY-MM-DD] | Initial consolidation | [CEO] |
+| Date | Decision | Made by | Rationale |
+|------|----------|---------|-----------|
+| [YYYY-MM-DD] | [PLACEHOLDER] | [OWNER] | [PLACEHOLDER] |

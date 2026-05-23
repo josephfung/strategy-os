@@ -1,1 +1,0 @@
-{"_schema":"Strategy OS audit log — one JSON object per line. Fields: timestamp (ISO 8601), component (strategy-lifecycle|strategy-analyst|strategy-coach), action (write|read|generate), target_file (relative path), summary (plain English description of what changed), approved_by (user-interaction|ceo-name|automated), decision_id (D-YYYY-MM-DD or null)"}
