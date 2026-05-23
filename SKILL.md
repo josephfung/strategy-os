@@ -39,13 +39,18 @@ Before loading ambient context, check whether the Strategy OS data directory exi
 2. If not:
    a. Create it: run `mkdir -p ~/.claude/strategy-os/data`
    b. Check if the plugin's template files are available under
-      `~/.claude/plugins/cache/josephfung/strategy-os/` (any version subfolder).
+      `~/.claude/plugins/cache/josephfung/strategy-os/` (any version subfolder; if
+      multiple versions exist, use the one with the highest version number).
       <!-- TODO: verify this cache path against actual Claude plugin behavior before shipping -->
       If found, copy any files from its `data/` subdirectory to
       `~/.claude/strategy-os/data/` — but only if the destination file does not
-      already exist (never overwrite live data).
-   c. If the plugin path is not resolvable, skip the copy — the normal first-run
-      flows (Phase 1, coach setup interview) will create the files organically.
+      already exist (never overwrite live data). If the copy fails for any reason,
+      emit: "Strategy OS: created `~/.claude/strategy-os/data/` but could not copy
+      starter templates. First-run flows (Phase 1, coach setup) will create the
+      necessary files." Then continue.
+   c. If the plugin path is not resolvable or its `data/` subdirectory is absent,
+      emit: "Strategy OS: starter templates not found in plugin cache — new files
+      will be created by the first-run flows." Then continue.
 3. If the directory cannot be created due to a permissions error, emit once:
    > "Strategy OS: could not create ~/.claude/strategy-os/data/. Check directory
    > permissions. Data will not be saved this session."

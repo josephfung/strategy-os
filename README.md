@@ -14,7 +14,8 @@ Strategy OS v2 adds two new operating modes alongside the existing lifecycle:
 | **Strategy Analyst** | Subagent (ambient) | Watches conversations passively, flags potential misalignments with the strategy. Advisory, never directive. |
 | **Strategy Coach** | Subagent (scheduled) | KPI tracking and accountability partner. Conducts setup interview, runs periodic check-ins, builds an execution narrative over time. |
 
-All three modes share a `data/` layer: `strategy.md` (canonical memo), `kpi-registry.md`
+All three modes share a data layer at `~/.claude/strategy-os/data/` — the same location
+in both Claude Code and Claude Desktop: `strategy.md` (canonical memo), `kpi-registry.md`
 (metrics history), `watcher-memory.md` (analyst flags), and `audit-log.jsonl` (every
 write action across all components).
 
