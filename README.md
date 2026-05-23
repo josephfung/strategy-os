@@ -106,7 +106,8 @@ This is not a strategy course. It's an operating system for CEOs who already kno
 Installs all three modes: lifecycle, ambient analyst, and coach with automatic cadence checking.
 
 ```bash
-claude plugin install --from github:josephfung/strategy-os
+claude plugin marketplace add josephfung/strategy-os
+claude plugin install strategy-os
 ```
 
 The plugin registers the `@strategy-analyst` and `@strategy-coach` subagents and wires the hooks that make ambient detection and coach cadence checking work automatically on every session.
