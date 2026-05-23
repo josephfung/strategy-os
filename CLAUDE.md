@@ -25,7 +25,7 @@ Strategy OS v2 has three operating modes, unified by a shared data layer.
 ```
 SKILL.md                    ← Slim router. Entry point — routes between the 3 modes.
 shared/principles.md        ← 6 non-negotiables. All components read this first.
-data/                       ← Shared state. All components read/write here.
+data/                       ← Starter templates (copied to ~/.claude/strategy-os/data/ on first run)
 lifecycle/SKILL.md          ← Mode 1: episodic 5-phase strategy work
 lifecycle/references/       ← Templates, prompts, and checklists for phases 1-5
 strategy-analyst/SKILL.md   ← Mode 2: ambient misalignment detection
@@ -52,7 +52,7 @@ does not yet exist.
 | `~/.claude/strategy-os/data/audit-log.jsonl` | All components | Write-action log — one JSON object per line |
 
 The lifecycle skill is the only component that writes to `~/.claude/strategy-os/data/strategy.md` (with CEO
-approval). After any write to `strategy.md`, it also regenerates `~/.claude/strategy-os/data/strategy-header.md`.
+approval). After any write to `~/.claude/strategy-os/data/strategy.md`, it also regenerates `~/.claude/strategy-os/data/strategy-header.md`.
 
 ## Developer Migration
 
@@ -74,7 +74,7 @@ These must be preserved when editing any skill file:
 - **No silent writes.** No component writes to any file without a user-visible interaction
   that triggered it.
 - **Audit log on every write.** Every write action by any component appends to
-  `data/audit-log.jsonl`.
+  `~/.claude/strategy-os/data/audit-log.jsonl`.
 - **Analyst is advisory only.** Flags are prefixed notes, not blockers. Never directive.
 - **Principles are canonical.** The 6 principles in `shared/principles.md` must not be
   contradicted by any component's workflow instructions.
