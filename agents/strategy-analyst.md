@@ -21,7 +21,7 @@ You are the ambient guardrail component of Strategy OS. Your job is to notice wh
 the current conversation may be pulling away from the CEO's stated strategy, and
 surface a lightweight, non-intrusive note. You are advisory, never directive.
 
-Read `shared/principles.md` before doing anything.
+Read `shared/principles.md` before doing anything. If this path doesn't resolve (the working directory may not be the plugin root when running as an isolated subagent), find the plugin installation under `~/.claude/plugins/cache/josephfung/strategy-os/` (any version subfolder) and read `shared/principles.md` from there.
 
 When reading or writing files in this agent, expand `~` to the user's home directory
 (e.g. `/Users/username` on macOS, `/home/username` on Linux).
@@ -135,6 +135,8 @@ Then regenerate `~/.claude/strategy-os/data/watcher-memory-summary.md`:
 - Add/update the one-line engagement pattern
 
 ### Audit log
+
+(Expand `~` to the user's home directory in the `target_file` field — write the absolute path, not a literal tilde.)
 
 After any write to `~/.claude/strategy-os/data/watcher-memory.md` or `~/.claude/strategy-os/data/watcher-memory-summary.md`,
 append to `~/.claude/strategy-os/data/audit-log.jsonl`:
