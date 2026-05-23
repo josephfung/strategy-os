@@ -33,19 +33,39 @@ strategy-analyst/hook.md    ← Claude Code UserPromptSubmit hook (Stage 1 detec
 strategy-coach/SKILL.md     ← Mode 3: KPI tracking and check-in cadence
 ```
 
-## Data Layer (`data/`)
+## Data Layer
+
+**Live data location:** `~/.claude/strategy-os/data/` — this is where all runtime data is
+read and written by the skills. Shared across Claude Code and Claude Desktop.
+
+**Template files:** `data/` (in this repo) — shipped with the plugin as starter files.
+On first run, the skill copies these to `~/.claude/strategy-os/data/` if that directory
+does not yet exist.
 
 | File | Owner | Purpose |
 |------|-------|---------|
-| `strategy.md` | Lifecycle (Phase 1) | Canonical strategy doc — source of truth |
-| `strategy-header.md` | Auto-generated | 1-2 sentence summary for ambient loading (~150 tokens) |
-| `kpi-registry.md` | Coach | KPI definitions, targets, check-in history |
-| `watcher-memory.md` | Analyst | Full log of flags and user responses |
-| `watcher-memory-summary.md` | Auto-generated | Recent patterns for cool-down and salience scoring |
-| `audit-log.jsonl` | All components | Write-action log — one JSON object per line |
+| `~/.claude/strategy-os/data/strategy.md` | Lifecycle (Phase 1) | Canonical strategy doc — source of truth |
+| `~/.claude/strategy-os/data/strategy-header.md` | Auto-generated | 1-2 sentence summary for ambient loading (~150 tokens) |
+| `~/.claude/strategy-os/data/kpi-registry.md` | Coach | KPI definitions, targets, check-in history |
+| `~/.claude/strategy-os/data/watcher-memory.md` | Analyst | Full log of flags and user responses |
+| `~/.claude/strategy-os/data/watcher-memory-summary.md` | Auto-generated | Recent patterns for cool-down and salience scoring |
+| `~/.claude/strategy-os/data/audit-log.jsonl` | All components | Write-action log — one JSON object per line |
 
-The lifecycle skill is the only component that writes to `strategy.md` (with CEO
-approval). After any write to `strategy.md`, it also regenerates `strategy-header.md`.
+The lifecycle skill is the only component that writes to `~/.claude/strategy-os/data/strategy.md` (with CEO
+approval). After any write to `strategy.md`, it also regenerates `~/.claude/strategy-os/data/strategy-header.md`.
+
+## Developer Migration
+
+If you have existing live data in the project's `data/` folder from before this
+architecture change, move it once to the shared location:
+
+```bash
+mkdir -p ~/.claude/strategy-os/data
+mv /path/to/strategy-os-v2/data/*.md ~/.claude/strategy-os/data/
+mv /path/to/strategy-os-v2/data/*.jsonl ~/.claude/strategy-os/data/
+```
+
+The project `data/` files are now templates only — do not put real data there.
 
 ## Key Invariants
 
@@ -64,7 +84,7 @@ These must be preserved when editing any skill file:
 ## Detection Paths (Two Environments)
 
 **Claude Code (hooks-based):**
-- SessionStart: root SKILL.md loads `data/strategy-header.md` + `data/watcher-memory-summary.md`
+- SessionStart: root SKILL.md runs First-Run Check, then loads `~/.claude/strategy-os/data/strategy-header.md` + `~/.claude/strategy-os/data/watcher-memory-summary.md`
 - UserPromptSubmit: `strategy-analyst/hook.md` runs Stage 1 keyword detection
 - Scheduled: coach fires when check-in cadence elapsed
 
