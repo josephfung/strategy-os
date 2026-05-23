@@ -2,22 +2,15 @@
 
 **Strategy OS turns scattered strategy artifacts into a single, testable, executable system.**
 
-One skill for [Claude](https://claude.ai). Consolidation, stress-testing, communication, compilation to work, and ongoing governance — all as one structured workflow.
-
-## What's new in v2
-
-Strategy OS v2 adds two new operating modes alongside the existing lifecycle:
+Three operating modes for Claude — a lifecycle for building strategy, a passive analyst that flags drift, and a coach that tracks your KPIs over time.
 
 | Mode | Type | What it does |
 |------|------|-------------|
-| **Strategy Lifecycle** | Skill (episodic) | The 5-phase workflow from v1 — consolidate, stress-test, communicate, compile, govern |
-| **Strategy Analyst** | Subagent (ambient) | Watches conversations passively, flags potential misalignments with the strategy. Advisory, never directive. |
-| **Strategy Coach** | Subagent (scheduled) | KPI tracking and accountability partner. Conducts setup interview, runs periodic check-ins, builds an execution narrative over time. |
+| **Strategy Lifecycle** | Skill (episodic) | 5-phase workflow: consolidate, stress-test, communicate, compile, govern |
+| **Strategy Analyst** | Subagent (ambient) | Watches your conversations passively, flags potential misalignments with the strategy. Advisory, never directive. |
+| **Strategy Coach** | Subagent (scheduled) | KPI tracking and accountability partner. Runs setup interview, periodic check-ins, and builds an execution narrative over time. |
 
-All three modes share a data layer at `~/.claude/strategy-os/data/` — the same location
-in both Claude Code and Claude Desktop: `strategy.md` (canonical memo), `kpi-registry.md`
-(metrics history), `watcher-memory.md` (analyst flags), and `audit-log.jsonl` (every
-write action across all components).
+All three modes share a data layer at `~/.claude/strategy-os/data/` — the same location in both Claude Code and Claude Desktop.
 
 ---
 
@@ -38,6 +31,10 @@ write action across all components).
 | Communicate | Comms strategist | Lock the strategy objects, then translate into board memo, all-hands story, exec alignment note, sales enablement, or CEO narrative — without drifting from the source. |
 | Compile | Work architect | Map the memo to Objective → Pillars → Bets → Epics → Tickets with hypothesis-driven definitions of done and traceability tags. |
 | Govern | Ops monitor | Weekly drift detection, monthly pillar reviews, quarterly planning packets, and agent guardrails for safe AI-assisted execution. |
+
+Alongside the lifecycle, the **Strategy Analyst** watches every conversation. If you start talking about hiring, roadmap changes, or resource allocation in a way that cuts against your stated strategy, it surfaces a note before you proceed. You can dismiss it, log it, or update your strategy — but it never blocks work.
+
+The **Strategy Coach** sets up a KPI registry in a brief interview, then checks in at whatever cadence you choose (weekly, monthly, or a mix per KPI). Each check-in logs the current value and builds a running narrative of execution health over time.
 
 ## Strategy OS Demo
 
@@ -74,6 +71,20 @@ Claude: [Scans active work against the memo]
         Enterprise SSO work violates your "PLG-first" trade-off.
         Pillar 2 has zero ticket activity in 3 weeks.
         Recommended: reassign SSO to P3-B1, escalate Pillar 2 stall.
+
+[Later, during an unrelated conversation]
+
+Strategy Analyst: ⚑ Strategic signal detected (cluster: resources)
+        You mentioned hiring 3 engineers for the data platform. Your
+        strategy memo designates the data platform as a Pillar 3 bet —
+        lower priority than Pillar 1 growth work. Flag for awareness.
+        [Dismiss] [Log it] [Update strategy]
+
+[At session start, one week later]
+
+Strategy Coach:   KPI check-in is overdue (7 days since last check-in).
+        Last week: ARR $1.2M, churn 2.1%, NPS 41.
+        What are your numbers this week?
 ```
 
 ## Before & after screenshots
@@ -90,16 +101,22 @@ This is not a strategy course. It's an operating system for CEOs who already kno
 
 ## Install
 
-### npx (works with Claude Code, Cursor, Codex, and 37+ other agents)
+### Claude Code — full installation (recommended)
 
-```bash
-npx skills add josephfung/strategy-os
-```
-
-### Claude Code plugin
+Installs all three modes: lifecycle, ambient analyst, and coach with automatic cadence checking.
 
 ```bash
 claude plugin install --from github:josephfung/strategy-os
+```
+
+The plugin registers the `@strategy-analyst` and `@strategy-coach` subagents and wires the hooks that make ambient detection and coach cadence checking work automatically on every session.
+
+### Other agents — Cursor, Codex, and 37+ others
+
+Installs the `/strategy` lifecycle skill. The analyst and coach are available via explicit invocation but ambient hooks are not supported outside Claude Code.
+
+```bash
+npx skills add josephfung/strategy-os
 ```
 
 ### Cowork
@@ -123,6 +140,8 @@ I built Strategy OS because I kept watching CEOs — myself included — treat s
 Consolidation is not stress-testing. Stress-testing is not communication. Communication is not execution. If you blur them together, you get a deck that sounds good but doesn't survive contact with reality.
 
 I want explicit phases. Each one has a job, produces a specific artifact, and hands off cleanly to the next. That's the unlock.
+
+The analyst and coach extend that discipline into ongoing execution — not just during the planning cycle, but in every conversation and every week.
 
 ## Also available: Strategy OS Downloadable Pack
 
